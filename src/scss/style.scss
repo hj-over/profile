@@ -1,11 +1,13 @@
-//common
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
+
+// common
 @import "common/reset";
 @import "common/header";
 @import "common/footer";
-//main
+// main
 @import "main/content";
 @import "main/visual";
-//sub
+// sub
 @import "sub/community";
 @import "sub/department";
 @import "sub/gallery";
