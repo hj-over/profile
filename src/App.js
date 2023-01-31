@@ -17,19 +17,19 @@ import Join from "./components/sub/Join";
 function App() {
   return (
     <>
-      {/* 화면에 중첩되는 컴포넌트가 있는 경우  switch 를 활용한다. */}
+      {/* 화면에 중첩되는 컴포넌트가 있는 경우 Switch 를 활용한다. */}
       <Switch>
         <Route exact path="/">
-          {/* 라우터 값에 따라서 Header props 로 type="main" or "sub" */}
+          {/* 라우터 값에 따라서 Header props로 type="main" */}
           <Header type={"main"} />
           <Visual />
           <Content />
         </Route>
-        {/* 라우터 따라서 Header 의 css 를 달리 하겠다. */}
+
+        {/* 라우터에 따라서 header 의 css 를 달리하겠다.  */}
         {/* 중첩되는 Header 에 대한 처리가 필요하다. */}
-        {/* <Header type={"sub"} /> */}
-        {/* 컴포넌트를 출력하는 3번째 방법. */}
-        {/* props를 전달하기 위해 render 사용 */}
+        {/* 컴포넌트를 출력하는 3번째 방법 */}
+        {/* <Header type={"sub"}/> */}
         <Route path="/" render={() => <Header type={"sub"} />} />
       </Switch>
 
