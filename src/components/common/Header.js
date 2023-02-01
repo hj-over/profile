@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 const Header = (props) => {
-  const active = { color: "blue" };
+  const active = { color: "pink" };
   return (
     <header className={props.type}>
       <div className="inner">

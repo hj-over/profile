@@ -2,17 +2,25 @@
   figure {
     width: 100%;
     height: 300px;
-    background: grey;
+    background: gray;
   }
   > .inner {
     position: relative;
-    width: 1080px;
+    width: 1180px;
     margin: 100px auto;
     min-height: 400px;
+    transition: 1s;
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  &.on {
+    > .inner {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 }
-
-//tablet
+// tablet
 @media screen and (max-width: $tablet) {
   .content {
     figure {
@@ -27,10 +35,9 @@
 }
 // mobile
 @media screen and (max-width: $mp) {
-  .content{
-    figure{
+  .content {
+    figure {
       height: 150px;
     }
-    
   }
 }
