@@ -1,5 +1,36 @@
 .Join {
   figure {
-    background: green;
+    background: turquoise;
+  }
+  table {
+    width: 100%;
+    border-top: 2px solid #555;
+    border-bottom: 2px solid #555;
+    th {
+      width: 25%;
+      padding: 10px 0px;
+      padding-left: 30px;
+      text-align: left;
+      border-bottom: 1px solid #bbb;
+      &:last-child {
+        text-align: center;
+      }
+    }
+    td {
+      border-top: 1px solid #bbb;
+      border-bottom: 1px solid #bbb;
+      padding: 10px 0px 10px 30px;
+      input[type="text"],
+      input[type="password"] {
+        border: 1px solid #ccc;
+        padding: 6px 20px;
+        width: 40%;
+      }
+      .err {
+        font-size: 11px;
+        color: #f00;
+        margin-left: 20px;
+      }
+    }
   }
 }
