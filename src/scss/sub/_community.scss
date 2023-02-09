@@ -1,34 +1,66 @@
-.content {
+.Community {
   figure {
-    width: 100%;
-    height: 300px;
     background: pink;
   }
   > .inner {
-    position: relative;
-    width: 1180px;
-    margin: 100px auto;
-    min-height: 400px;
-  }
-}
-// tablet
-@media screen and (max-width: $tablet) {
-  .content {
-    figure {
-      height: 200px;
+    .inputBox {
+      border: 1px solid #bbb;
+      padding: 50px;
+      margin-bottom: 50px;
+      input[type="text"],
+      textarea {
+        width: 50%;
+        padding: 8px 10px;
+        border: 1px solid #aaa;
+        margin-bottom: 20px;
+        resize: none;
+      }
+      .btnSet {
+        button {
+          width: 150px;
+          height: 30px;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          border: none;
+          background: #555;
+          color: #fff;
+          cursor: pointer;
+          margin-right: 20px;
+        }
+      }
     }
-    > .inner {
-      width: 100%;
-      margin: 80px auto;
-      padding: 0px 30px;
-    }
-  }
-}
-// mobile
-@media screen and (max-width: $mp) {
-  .content {
-    figure {
-      height: 150px;
+    .showBox {
+      border: 1px solid #bbb;
+      padding: 50px;
+      article {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 40px;
+        padding: 30px;
+        background: #fff;
+        .txt {
+          width: 70%;
+        }
+        .btnSet {
+          display: flex;
+          align-items: center;
+          width: 20%;
+          button {
+            width: 50%;
+            height: 30px;
+            border: none;
+            background: #555;
+            color: #fff;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: 0.3s;
+            &:hover {
+              background: #111;
+            }
+          }
+        }
+      }
     }
   }
 }

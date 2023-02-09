@@ -1,26 +1,96 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Layout from "../common/Layout";
-// jascript 코드 자리
+
 const Community = () => {
-  // jascript 코드 자리
-  // 컴포넌트가 마운트, 업데이트(state 변경), 언마운트 시
-  // 하고 싶은일을 작성하는 Hook : useEffect
-  // 기본적 형태
-  // useEffect(() => {
-  //   하고 싶은일
-  //   클린업 함수 : 컴포넌트 제거시 실행
-  //   return () => {
-  //   }
-  // }, [의존성배열: dependency Array ]);
+  // 데모용 데이터 생성
+  const initPost = [
+    { title: "hello1", content: "Welcome To Community!1" },
+    { title: "hello2", content: "Welcome To Community!2" },
+    { title: "hello3", content: "Welcome To Community!3" },
+    { title: "hello4", content: "Welcome To Community!4" },
+  ];
+  // 출력 목록 관리 state
+  const [posts, setPosts] = useState(initPost);
 
+  const input = useRef(null);
+  const contents = useRef(null);
+  // 각 항목을 useState 로 사용하면
+  // 리랜더링이 많이 일어나므로 ref 로 활용한다.
+  // ref로 value 를 참조하면 리랜더링을 줄인다.
+  const createPost = () => {
+    // 앞자리 및 뒷자리 공백을 제거하기 위해 trim() 사용
+    if (
+      input.current.value.trim() === "" ||
+      contents.current.value.trim() === ""
+    ) {
+      resetPost();
+      alert("제목과 본문을 입력하세요.");
+    }
+    // 새로운 포스트 등록
+    // state 업데이트 이기때문에 화면 갱신
+    setPosts([
+      ...posts,
+      { title: input.current.value, content: contents.current.value },
+    ]);
+    // 내용 등록하고 나면 초기화
+    resetPost();
+  };
+  const resetPost = () => {
+    input.current.value = "";
+    contents.current.value = "";
+  };
+
+  // 디버깅
   useEffect(() => {
-    return () => {};
-  }, []);
+    console.log(posts);
+  }, [posts]);
 
-  // jsx 코드 자리
-  // : 주의 사항 return () O
-  // : 주의 사항 return {} X
-  return <Layout title={"Community"}>Community</Layout>;
+  return (
+    <Layout title={"Community"}>
+      {/* 입력폼 */}
+      <div className="inputBox">
+        <form>
+          <input type="text" placeholder="제목을 입력하세용." ref={input} />
+          <br />
+          <textarea
+            cols="30"
+            rows="5"
+            placeholder="본문을 입력하세용."
+            ref={contents}
+          ></textarea>
+          <div className="btnSet">
+            {/* form 안쪽에 버튼은 type 을 정의한다. */}
+            <button type="button" onClick={resetPost}>
+              CANCEL
+            </button>
+            <button type="button" onClick={createPost}>
+              WRITE
+            </button>
+          </div>
+        </form>
+      </div>
+      {/* 리스트 출력 */}
+      <div className="showBox">
+        {/* 목록을 출력할 땐 map, 그리고 key! */}
+        {posts.map((item, index) => {
+          // uuid : https://www.npmjs.com/package/uuid
+          // 중복 되지 않는 key 를 만들어주는 라이브러리
+          // 그러나 가능하면 본인이 kdy를 관리할 것.
+          return (
+            <article key={index}>
+              <div className="txt">
+                <h2>{item.title}</h2>
+                <p>{item.content}</p>
+              </div>
+              <div className="btnSet">
+                <button>EDIT</button>
+                <button>DELETE</button>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </Layout>
+  );
 };
-// jascript 코드 자리
 export default Community;
