@@ -39,13 +39,19 @@
         margin-bottom: 40px;
         padding: 30px;
         background: #fff;
+        form {
+          width: 100%;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+        }
         .txt {
           width: 70%;
           input,
           textarea {
             width: 70%;
             border: 1px solid #bbb;
-            padding:  8px 12px;
+            padding: 8px 12px;
             margin-bottom: 10px;
             resize: none;
           }
