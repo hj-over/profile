@@ -37,13 +37,13 @@ const Community = () => {
   });
 
   // 데모용 데이터 생성
-  const initPost = [
-    { title: "Hello 1", content: "Welocome To React!" },
-    { title: "Hello 2", content: "Welocome To React!" },
-    { title: "Hello 3", content: "Welocome To React!" },
-    { title: "Hello 4", content: "Welocome To React!" },
-    { title: "Hello 5", content: "Welocome To React!" },
-  ];
+  // const initPost = [
+  //   { title: "Hello 1", content: "Welocome To React!" },
+  //   { title: "Hello 2", content: "Welocome To React!" },
+  //   { title: "Hello 3", content: "Welocome To React!" },
+  //   { title: "Hello 4", content: "Welocome To React!" },
+  //   { title: "Hello 5", content: "Welocome To React!" },
+  // ];
 
   // 로컬에 저장된 내용을 가지고 온다.
   const getLocalPost = () => {
@@ -128,6 +128,43 @@ const Community = () => {
     localStorage.setItem("post", JSON.stringify(posts));
   }, [posts]);
 
+  // 이미지 업로드 및 미리보기
+  const [imgFile, setImgFile] = useState("");
+  const imgRef = useRef(null);
+  const onChangeImg = async (e) => {
+    e.preventDefault();
+    // 미리보기 기능
+    if (e.target.files) {
+      // files 는 배열에 담긴다.
+      // files 이 한개이므로 e.target.files[0]
+      const uploadFile = e.target.files[0];
+      console.log(uploadFile);
+      // 이미지를 읽어들이는 바닐라 함수
+      const reader = new FileReader();
+      reader.readAsDataURL(uploadFile);
+      reader.onloadend = () => {
+        // 임시 이미지가 만들어진다.
+        // use state.
+        setImgFile(reader.result);
+      };
+
+      // 서버로 이미지를 임시로 보내고 url 글자를 받아오는 코드
+      // 일반적인 방법
+
+      // 파일을 강제로 업로드 한다.
+      // const formData = new FormData();
+      // formData.append("files", uploadFile);
+      // await axios({
+      //   method: "post",
+      //   url: "/api/files/images",
+      //   data: formData,
+      //   headers: {
+      //     "Content-Type": "multipart/form-data",
+      //   },
+      // });
+    }
+  };
+
   return (
     <Layout title={"Community"}>
       {/* 입력폼 */}
@@ -152,6 +189,16 @@ const Community = () => {
           <input type="date" {...register("timestamp")} />
           <span className="err">{errors.timestamp?.message}</span>
           <br />
+          {/* 이미지 업로드 하기 : 이미지 미리보기 연동 */}
+          <div>
+            <img src={imgFile} alt="프로필 이미지" />
+            <input
+              type="file"
+              accept="image/*"
+              onInput={onChangeImg}
+              ref={imgRef}
+            />
+          </div>
           <div className="btnSet">
             {/* form 안쪽에 버튼은 type 을 정의한다. */}
             <button type="reset">CANCEL</button>
